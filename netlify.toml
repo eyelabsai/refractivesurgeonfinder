@@ -1,0 +1,7 @@
+[build]
+  publish = "public"
+  command = "mkdir -p public && cp -r templates/* public/ && cp -r static public/ || true"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild" 
