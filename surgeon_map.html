@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_50acfd3a6e5deaa55a8b05707feebb78 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_50acfd3a6e5deaa55a8b05707feebb78" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_50acfd3a6e5deaa55a8b05707feebb78 = L.map(
+                "map_50acfd3a6e5deaa55a8b05707feebb78",
+                {
+                    center: [29.505102836787565, -98.5688209150259],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 10,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_77c49c313a2a2e4b0d415ee4dd560a25 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_77c49c313a2a2e4b0d415ee4dd560a25.addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var marker_92f8789480de3670f73fa6a407109cb8 = L.marker(
+                [29.505102836787565, -98.5688209150259],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_fc8456cad71152271ee1ed4e78493241 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_92f8789480de3670f73fa6a407109cb8.setIcon(icon_fc8456cad71152271ee1ed4e78493241);
+        
+    
+        var popup_d72fc81b834ac952a7e261d0d2b0e51e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad8031f1adc670edf154d8866a1c5c73 = $(`<div id="html_ad8031f1adc670edf154d8866a1c5c73" style="width: 100.0%; height: 100.0%;">Search Center: 78229</div>`)[0];
+                popup_d72fc81b834ac952a7e261d0d2b0e51e.setContent(html_ad8031f1adc670edf154d8866a1c5c73);
+            
+        
+
+        marker_92f8789480de3670f73fa6a407109cb8.bindPopup(popup_d72fc81b834ac952a7e261d0d2b0e51e)
+        ;
+
+        
+    
+    
+            var marker_a04ea27d9ba45f0a84357583ebe738d1 = L.marker(
+                [29.5057093, -98.5864589],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_91e31782dc78ae92a88312a09dc820e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_a04ea27d9ba45f0a84357583ebe738d1.setIcon(icon_91e31782dc78ae92a88312a09dc820e8);
+        
+    
+        var popup_4afbe56d86b1b94f32b95e43d97788ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4c5cfdfd3cd33ec76a31defac6b50706 = $(`<div id="html_4c5cfdfd3cd33ec76a31defac6b50706" style="width: 100.0%; height: 100.0%;">                 <b>Lisa McIntire, MD, PCEO</b><br>                 Practice: Heart of Texas Eye Institute<br>                 Address: 2424 Babcock Rd Suite 101, San Antonio, TX 78229, USA<br>                 Phone: (210) 692-1388<br>                 Website: <a href="https://www.southtexaseyeinstitute.com/?y_source=1_MTA4NjM2OTctNzE1LWxvY2F0aW9uLndlYnNpdGU%3D" target="_blank">https://www.southtexaseyeinstitute.com/?y_source=1_MTA4NjM2OTctNzE1LWxvY2F0aW9uLndlYnNpdGU%3D</a><br>                 Distance: 1.1 miles             </div>`)[0];
+                popup_4afbe56d86b1b94f32b95e43d97788ff.setContent(html_4c5cfdfd3cd33ec76a31defac6b50706);
+            
+        
+
+        marker_a04ea27d9ba45f0a84357583ebe738d1.bindPopup(popup_4afbe56d86b1b94f32b95e43d97788ff)
+        ;
+
+        
+    
+    
+            var marker_3c02f67f9d6e19150bb408023e99586d = L.marker(
+                [29.50576770000001, -98.5864356],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_fe3adf054672e9d3bc70dbdf7feb1d3c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_3c02f67f9d6e19150bb408023e99586d.setIcon(icon_fe3adf054672e9d3bc70dbdf7feb1d3c);
+        
+    
+        var popup_b151bcdfa28959e64866d5bdfb545df8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f53a3bd3a2973b9cc67bd8221df74d7 = $(`<div id="html_2f53a3bd3a2973b9cc67bd8221df74d7" style="width: 100.0%; height: 100.0%;">                 <b>Lisa Martén, MD, PCEO</b><br>                 Practice: South Texas Eye Institute<br>                 Address: 2424 Babcock Rd Suite 101, San Antonio, TX 78229, USA<br>                 Phone: (210) 692-1388<br>                 Website: <a href="https://www.southtexaseyeinstitute.com/our-doctors/lisa-marten-md/?y_source=1_MTEyMzc4ODgtNzE1LWxvY2F0aW9uLndlYnNpdGU%3D" target="_blank">https://www.southtexaseyeinstitute.com/our-doctors/lisa-marten-md/?y_source=1_MTEyMzc4ODgtNzE1LWxvY2F0aW9uLndlYnNpdGU%3D</a><br>                 Distance: 1.1 miles             </div>`)[0];
+                popup_b151bcdfa28959e64866d5bdfb545df8.setContent(html_2f53a3bd3a2973b9cc67bd8221df74d7);
+            
+        
+
+        marker_3c02f67f9d6e19150bb408023e99586d.bindPopup(popup_b151bcdfa28959e64866d5bdfb545df8)
+        ;
+
+        
+    
+    
+            var marker_cd82888fd6bc4d221e62413f4e1b6a32 = L.marker(
+                [29.5269899, -98.56301429999999],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_950802fc905ed16766cf06bea0feeb1d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_cd82888fd6bc4d221e62413f4e1b6a32.setIcon(icon_950802fc905ed16766cf06bea0feeb1d);
+        
+    
+        var popup_e311dfe227c42c1e32007988c910ac15 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0ff7abe7717cbe16d0bdafcc5081d249 = $(`<div id="html_0ff7abe7717cbe16d0bdafcc5081d249" style="width: 100.0%; height: 100.0%;">                 <b>Gregory D. Parkhurst, MD, PCEO</b><br>                 Practice: Parkhurst NuVision<br>                 Address: 9725 Datapoint Dr Suite 106, San Antonio, TX 78229, USA<br>                 Phone: (210) 585-2020<br>                 Website: <a href="https://sanantonio-lasik.com/our-doctors/dr-greg-parkhurst/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=dr_gregory" target="_blank">https://sanantonio-lasik.com/our-doctors/dr-greg-parkhurst/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=dr_gregory</a><br>                 Distance: 1.5 miles             </div>`)[0];
+                popup_e311dfe227c42c1e32007988c910ac15.setContent(html_0ff7abe7717cbe16d0bdafcc5081d249);
+            
+        
+
+        marker_cd82888fd6bc4d221e62413f4e1b6a32.bindPopup(popup_e311dfe227c42c1e32007988c910ac15)
+        ;
+
+        
+    
+    
+            var marker_acbc0709a00d6511b39003dd39205b5d = L.marker(
+                [29.5271308, -98.5631112],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_8aab55685ba6152116edaf2a976c1855 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_acbc0709a00d6511b39003dd39205b5d.setIcon(icon_8aab55685ba6152116edaf2a976c1855);
+        
+    
+        var popup_f29a8216a75d7520834a17cc89a25397 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f1ce837ad07f590a0b8e41817054510 = $(`<div id="html_2f1ce837ad07f590a0b8e41817054510" style="width: 100.0%; height: 100.0%;">                 <b>Lauren Libfraind, MD</b><br>                 Practice: Parkhurst NuVision<br>                 Address: 9725 Datapoint Dr Suite 106, San Antonio, TX 78229, USA<br>                 Phone: (210) 585-2020<br>                 Website: <a href="https://www.sanantonio-lasik.com/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=sanantonio" target="_blank">https://www.sanantonio-lasik.com/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=sanantonio</a><br>                 Distance: 1.6 miles             </div>`)[0];
+                popup_f29a8216a75d7520834a17cc89a25397.setContent(html_2f1ce837ad07f590a0b8e41817054510);
+            
+        
+
+        marker_acbc0709a00d6511b39003dd39205b5d.bindPopup(popup_f29a8216a75d7520834a17cc89a25397)
+        ;
+
+        
+    
+    
+            var marker_e48056d75882485f1bb1eb124c683ce4 = L.marker(
+                [29.5271308, -98.5631112],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_a7d89bf3fff075f2bf34cbd99edd9dcf = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_e48056d75882485f1bb1eb124c683ce4.setIcon(icon_a7d89bf3fff075f2bf34cbd99edd9dcf);
+        
+    
+        var popup_ec6c6fd3d6915b0ad87288ae1518f409 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_83205f19cb7796a1c531db196b1a30d7 = $(`<div id="html_83205f19cb7796a1c531db196b1a30d7" style="width: 100.0%; height: 100.0%;">                 <b>Taj Nasser, MD</b><br>                 Practice: Parkhurst NuVision<br>                 Address: 9725 Datapoint Dr Suite 106, San Antonio, TX 78229, USA<br>                 Phone: (210) 585-2020<br>                 Website: <a href="https://www.sanantonio-lasik.com/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=sanantonio" target="_blank">https://www.sanantonio-lasik.com/?utm_source=googlemybusiness&utm_medium=organic&utm_campaign=sanantonio</a><br>                 Distance: 1.6 miles             </div>`)[0];
+                popup_ec6c6fd3d6915b0ad87288ae1518f409.setContent(html_83205f19cb7796a1c531db196b1a30d7);
+            
+        
+
+        marker_e48056d75882485f1bb1eb124c683ce4.bindPopup(popup_ec6c6fd3d6915b0ad87288ae1518f409)
+        ;
+
+        
+    
+    
+            var marker_071dc6a71c5f9e3637729302c05c93ea = L.marker(
+                [29.601338, -98.53710869999999],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_5a46e6d16c5622e1b2aa190f2219c1f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_071dc6a71c5f9e3637729302c05c93ea.setIcon(icon_5a46e6d16c5622e1b2aa190f2219c1f9);
+        
+    
+        var popup_c4fb382899c8c0517e815c2a13ed164d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f06b8a3d48198e5dfe424ae3f1d03fd4 = $(`<div id="html_f06b8a3d48198e5dfe424ae3f1d03fd4" style="width: 100.0%; height: 100.0%;">                 <b>Nader Iskander, MD</b><br>                 Practice: San Antonio Eye Specialists<br>                 Address: 2810 N Loop 1604 W Suite 200, San Antonio, TX 78248, USA<br>                 Phone: (210) 822-9800<br>                 Website: <a href="https://www.mysaeyes.com/about/about-our-doctors/nader-iskander-md-facs/" target="_blank">https://www.mysaeyes.com/about/about-our-doctors/nader-iskander-md-facs/</a><br>                 Distance: 6.9 miles             </div>`)[0];
+                popup_c4fb382899c8c0517e815c2a13ed164d.setContent(html_f06b8a3d48198e5dfe424ae3f1d03fd4);
+            
+        
+
+        marker_071dc6a71c5f9e3637729302c05c93ea.bindPopup(popup_c4fb382899c8c0517e815c2a13ed164d)
+        ;
+
+        
+    
+    
+            var marker_6a63f0bf3ed705768de6e12024bf712a = L.marker(
+                [29.460187, -98.41626559999999],
+                {
+}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+    
+            var icon_a37c56995150e67b647446060dedabfa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "plus",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+            marker_6a63f0bf3ed705768de6e12024bf712a.setIcon(icon_a37c56995150e67b647446060dedabfa);
+        
+    
+        var popup_870ca4cc74783979f2accf629b49fc33 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5545c54b92e06c015d5fd1646cd31ea3 = $(`<div id="html_5545c54b92e06c015d5fd1646cd31ea3" style="width: 100.0%; height: 100.0%;">                 <b>Gary Legault, MD</b><br>                 Practice: Brooke Army Medical Center<br>                 Address: 3551 Roger Brooke Dr, Fort Sam Houston, TX 78234, USA<br>                 Phone: (210) 916-7500<br>                 Website: <a href="https://bamc.tricare.mil/" target="_blank">https://bamc.tricare.mil/</a><br>                 Distance: 9.7 miles             </div>`)[0];
+                popup_870ca4cc74783979f2accf629b49fc33.setContent(html_5545c54b92e06c015d5fd1646cd31ea3);
+            
+        
+
+        marker_6a63f0bf3ed705768de6e12024bf712a.bindPopup(popup_870ca4cc74783979f2accf629b49fc33)
+        ;
+
+        
+    
+    
+            var circle_d4c55c5b263e504d5bc21664fdf382b5 = L.circle(
+                [29.505102836787565, -98.5688209150259],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 0.2, "radius": 16093.4, "stroke": true, "weight": 3}
+            ).addTo(map_50acfd3a6e5deaa55a8b05707feebb78);
+        
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refractive Surgeon Finder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Required scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Surgeon Finder</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="search-tab">Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="world-map-tab">World Map</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div id="search-section">
+            <h1 class="mb-4">Find a Refractive Surgeon</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <form id="search-form">
+                        <div class="mb-3">
+                            <label for="zip-code" class="form-label">ZIP Code</label>
+                            <input type="text" class="form-control" id="zip-code" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="radius" class="form-label">Search Radius (miles)</label>
+                            <input type="number" class="form-control" id="radius" value="50">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <div id="results-list" class="mt-4"></div>
+                </div>
+                <div class="col-md-8">
+                    <div id="map" style="height: 600px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="world-map-section" style="display: none;">
+            <h1 class="mb-4">All Refractive Surgeons Worldwide</h1>
+            <div id="world-map" style="height: 800px;"></div>
+        </div>
+    </div>
+
+    <script src="js/surgeons-data.js"></script>
+    <script src="js/map-handler.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

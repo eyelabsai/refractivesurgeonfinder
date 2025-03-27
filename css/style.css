@@ -1,0 +1,17 @@
+#map, #world-map {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.list-group {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    border-left: 4px solid #007bff;
+}
+
+.navbar {
+    margin-bottom: 20px;
+} 

@@ -1,0 +1,39 @@
+.surgeon-finder-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.surgeon-search-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+}
+
+.surgeon-list {
+    margin-top: 20px;
+}
+
+.surgeon-item {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#surgeon-map {
+    height: 500px;
+    margin: 20px 0;
+} 
