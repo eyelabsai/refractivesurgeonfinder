@@ -11,10 +11,13 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .container {
             max-width: 800px;
             padding: 2rem;
+            flex: 1 0 auto;
         }
         .search-card {
             background: white;
@@ -74,6 +77,35 @@
         }
         .world-map-link a:hover {
             color: #34495e;
+        }
+        .footer {
+            flex-shrink: 0;
+            width: 100%;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.1);
+        }
+        .footer p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+        .footer p:last-child {
+            margin-bottom: 0;
+        }
+        .footer a {
+            color: #34495e;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            .footer {
+                padding: 1rem;
+                margin-top: 1rem;
+            }
         }
     </style>
 </head>
@@ -175,12 +207,12 @@
         </div>
     </div>
 
-    <div class="container" style="position: fixed; bottom: -10px; left: 50%; transform: translateX(-50%); border-top: 1px solid rgba(0,0,0,0.1); width: 100%; z-index: 1000; padding-bottom: 1.5rem;">
-        <div class="text-center" style="max-width: 800px; margin: 0 auto;">
-            <p style="font-size: 1.1rem; color: #2c3e50; margin-bottom: 0.5rem; margin-top: 1rem;">If you have questions, need to update information, or would like to be included in this directory, please email <a href="mailto:gurpal@biminiai.com" style="color: #34495e; text-decoration: underline;">gurpal@biminiai.com</a></p>
-            <p style="font-size: 1.1rem; color: #2c3e50; margin-bottom: 0;">Made by <a href="https://www.linkedin.com/in/matt-hirabayashi-md-mba-96115b25" target="_blank" style="color: #34495e; text-decoration: underline;">Matt Hirabayashi, MD</a> and <a href="https://www.linkedin.com/in/gurpalvirdi" target="_blank" style="color: #34495e; text-decoration: underline;">Gurpal Virdi, MD</a></p>
+    <footer class="footer">
+        <div class="container text-center">
+            <p>If you have questions, need to update information, or would like to be included in this directory, please email <a href="mailto:gurpal@biminiai.com">gurpal@biminiai.com</a></p>
+            <p>Made by <a href="https://www.linkedin.com/in/matt-hirabayashi-md-mba-96115b25" target="_blank">Matt Hirabayashi, MD</a> and <a href="https://www.linkedin.com/in/gurpalvirdi" target="_blank">Gurpal Virdi, MD</a></p>
         </div>
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
