@@ -82,10 +82,17 @@
         <div class="logo">
             <i class="fas fa-eye"></i>
             <h1>Refractive Surgeon Finder</h1>
-            <p class="text-muted">Find the best refractive surgeons near you</p>
+            <p class="text-muted">Find the best refractive surgeons worldwide</p>
+        </div>
+        
+        <div class="world-map-link mb-4">
+            <a href="/world-map" class="btn btn-lg btn-outline-primary">
+                <i class="fas fa-globe me-2"></i>View All Surgeons on World Map
+            </a>
         </div>
         
         <div class="search-card">
+            <h4 class="mb-3">Or search for surgeons near you:</h4>
             <ul class="nav nav-pills nav-justified mb-4" id="searchTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="zip-tab" data-bs-toggle="pill" data-bs-target="#zipSearch" type="button">Search by ZIP</button>
@@ -103,9 +110,14 @@
                     <form action="/search" method="POST" class="needs-validation" novalidate>
                         <input type="hidden" name="search_type" value="zip">
                         <div class="mb-3">
-                            <label for="zip_code" class="form-label">ZIP Code</label>
-                            <input type="text" class="form-control" id="zip_code" name="zip_code" required pattern="[0-9]{5}">
-                            <div class="invalid-feedback">Please enter a valid 5-digit ZIP code.</div>
+                            <label for="zip_code" class="form-label">ZIP/Postal Code</label>
+                            <input type="text" class="form-control" id="zip_code" name="zip_code" required>
+                            <div class="invalid-feedback">Please enter a valid postal code.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country (Optional)</label>
+                            <input type="text" class="form-control" id="country" name="country" placeholder="e.g. USA, Canada, UK">
+                            <div class="form-text">Leave empty for international search</div>
                         </div>
                         <div class="mb-3">
                             <label for="radius" class="form-label">Search Radius (miles)</label>
@@ -121,72 +133,22 @@
                     <form action="/search" method="POST" class="needs-validation" novalidate>
                         <input type="hidden" name="search_type" value="city">
                         <div class="mb-3">
-                            <label for="city" class="form-label">City (Optional)</label>
+                            <label for="city" class="form-label">City</label>
                             <input type="text" class="form-control" id="city" name="city" placeholder="Enter city name">
-                            <div class="form-text">Leave empty to search entire state</div>
+                            <div class="form-text">At least one location field is required</div>
                         </div>
                         <div class="mb-3">
-                            <label for="state" class="form-label">State</label>
-                            <select class="form-select" id="state" name="state" required>
-                                <option value="">Select State</option>
-                                <option value="AL">Alabama</option>
-                                <option value="AK">Alaska</option>
-                                <option value="AZ">Arizona</option>
-                                <option value="AR">Arkansas</option>
-                                <option value="CA">California</option>
-                                <option value="CO">Colorado</option>
-                                <option value="CT">Connecticut</option>
-                                <option value="DE">Delaware</option>
-                                <option value="DC">District Of Columbia</option>
-                                <option value="FL">Florida</option>
-                                <option value="GA">Georgia</option>
-                                <option value="HI">Hawaii</option>
-                                <option value="ID">Idaho</option>
-                                <option value="IL">Illinois</option>
-                                <option value="IN">Indiana</option>
-                                <option value="IA">Iowa</option>
-                                <option value="KS">Kansas</option>
-                                <option value="KY">Kentucky</option>
-                                <option value="LA">Louisiana</option>
-                                <option value="ME">Maine</option>
-                                <option value="MD">Maryland</option>
-                                <option value="MA">Massachusetts</option>
-                                <option value="MI">Michigan</option>
-                                <option value="MN">Minnesota</option>
-                                <option value="MS">Mississippi</option>
-                                <option value="MO">Missouri</option>
-                                <option value="MT">Montana</option>
-                                <option value="NE">Nebraska</option>
-                                <option value="NV">Nevada</option>
-                                <option value="NH">New Hampshire</option>
-                                <option value="NJ">New Jersey</option>
-                                <option value="NM">New Mexico</option>
-                                <option value="NY">New York</option>
-                                <option value="NC">North Carolina</option>
-                                <option value="ND">North Dakota</option>
-                                <option value="OH">Ohio</option>
-                                <option value="OK">Oklahoma</option>
-                                <option value="OR">Oregon</option>
-                                <option value="PA">Pennsylvania</option>
-                                <option value="RI">Rhode Island</option>
-                                <option value="SC">South Carolina</option>
-                                <option value="SD">South Dakota</option>
-                                <option value="TN">Tennessee</option>
-                                <option value="TX">Texas</option>
-                                <option value="UT">Utah</option>
-                                <option value="VT">Vermont</option>
-                                <option value="VA">Virginia</option>
-                                <option value="WA">Washington</option>
-                                <option value="WV">West Virginia</option>
-                                <option value="WI">Wisconsin</option>
-                                <option value="WY">Wyoming</option>
-                            </select>
-                            <div class="invalid-feedback">Please select a state.</div>
+                            <label for="state" class="form-label">State/Region (Optional)</label>
+                            <input type="text" class="form-control" id="state" name="state" placeholder="Enter state or region">
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country (Optional)</label>
+                            <input type="text" class="form-control" id="country" name="country" placeholder="e.g. USA, Canada, UK">
                         </div>
                         <div class="mb-3">
                             <label for="radius" class="form-label">Search Radius (miles)</label>
                             <input type="number" class="form-control" id="radius" name="radius" value="50" min="1" max="500" required>
-                            <div class="form-text">For state-wide searches, minimum radius will be 200 miles</div>
+                            <div class="form-text">For wide area searches, minimum radius will be 200 miles</div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">
                             <i class="fas fa-search me-2"></i>Find Surgeons
@@ -210,12 +172,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-        
-        <div class="world-map-link">
-            <a href="/world-map">
-                <i class="fas fa-globe me-2"></i>View All Surgeons on World Map
-            </a>
         </div>
     </div>
 
