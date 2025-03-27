@@ -295,4 +295,9 @@ def world_map():
     return render_template('world_map.html', map_html=map_html)
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    # Use environment variable for port if available (for deployment)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
+
+# Add this line to export the app for Vercel serverless function
+app = app 
