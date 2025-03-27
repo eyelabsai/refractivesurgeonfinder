@@ -24,54 +24,93 @@
             top: 10px;
             left: 10px;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 8px 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 200px;
+            background: rgba(44, 62, 80, 0.85);
+            padding: 8px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            max-width: 44px;
             font-size: 0.85rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            color: white;
         }
         .map-control.expanded {
-            max-width: 250px;
+            max-width: 280px;
+            border-radius: 12px;
+            padding: 12px 16px;
         }
         .map-control h1 {
-            font-size: 1.1rem;
-            margin-bottom: 0;
-            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 500;
             display: flex;
             align-items: center;
             cursor: pointer;
+            white-space: nowrap;
+            color: white;
         }
         .map-control h1 i {
-            margin-right: 8px;
-            color: #2c3e50;
+            font-size: 1.2rem;
+            min-width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-control h1 span {
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+        .map-control.expanded h1 span {
+            opacity: 1;
+            transform: translateX(0);
         }
         .map-control-content {
             max-height: 0;
             overflow: hidden;
             transition: all 0.3s ease;
             opacity: 0;
+            margin-left: 28px;
         }
         .map-control.expanded .map-control-content {
             max-height: 200px;
             opacity: 1;
             margin-top: 8px;
         }
+        .map-control p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
         .control-button {
-            display: inline-block;
-            padding: 4px 12px;
-            background-color: #2c3e50;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background-color: white;
+            color: #2c3e50;
             text-decoration: none;
             border-radius: 6px;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-            margin-top: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            font-weight: 500;
         }
         .control-button:hover {
-            background-color: #34495e;
-            color: white;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            transform: translateY(-1px);
+        }
+        @media (max-width: 768px) {
+            .map-control {
+                top: auto;
+                bottom: 20px;
+            }
+            .map-control.expanded {
+                max-width: calc(100% - 40px);
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
@@ -81,12 +120,12 @@
         
         <div class="map-control" id="mapControl">
             <h1 onclick="toggleControl()">
-                <i class="fas fa-eye"></i> Refractive Surgeon Finder
+                <i class="fas fa-eye"></i><span>Refractive Surgeon Finder</span>
             </h1>
             <div class="map-control-content">
-                <p class="small mb-1">Click on clusters to zoom in or markers to see surgeon details.</p>
+                <p>Click on clusters to zoom in or markers to see surgeon details.</p>
                 <a href="/" class="control-button">
-                    <i class="fas fa-search me-1"></i>Search Near Me
+                    <i class="fas fa-search me-2"></i>Search Near Me
                 </a>
             </div>
         </div>
@@ -98,14 +137,22 @@
             document.getElementById('mapControl').classList.toggle('expanded');
         }
         
-        // Auto-expand on initial load, then collapse after 5 seconds
+        // Auto-expand on initial load, then collapse after 4 seconds
         document.addEventListener('DOMContentLoaded', function() {
             const control = document.getElementById('mapControl');
             control.classList.add('expanded');
             
             setTimeout(function() {
                 control.classList.remove('expanded');
-            }, 5000);
+            }, 4000);
+        });
+
+        // Close control when clicking outside
+        document.addEventListener('click', function(event) {
+            const control = document.getElementById('mapControl');
+            if (!control.contains(event.target) && control.classList.contains('expanded')) {
+                control.classList.remove('expanded');
+            }
         });
     </script>
 </body>
