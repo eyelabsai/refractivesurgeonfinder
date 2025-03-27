@@ -1,5 +1,7 @@
 name,practice_name,address,phone,website,zip_code,coordinates
 "Jack S Parker Jr, MD, PhD",Private Practice,"3745 Corporate Woods Dr, Vestavia Hills, AL 35242, USA",(205) 933-1077,http://parkercornea.com/,,"{'lat': 33.479107, 'lng': -86.70127099999999}"
+"Chuck Williamson, MD",Williamson Eye Center,"9001 Summa Ave. Baton Rouge, LA 70809, USA",(225) 274-3937,https://www.williamsoneyectr.com,70809,"{'lat': 30.398262, 'lng': -91.087175}"
+"Blake Williamson, MD",Williamson Eye Center,"9001 Summa Ave. Baton Rouge, LA 70809, USA",(225) 274-3937,https://www.williamsoneyectr.com,70809,"{'lat': 30.398262, 'lng': -91.087175}"
 "Jennifer Michelson, MD",Michelson Laser Vision Inc,"1201 11th Ave S #501, Birmingham, AL 35205, USA",(205) 969-8100,http://www.michelsonlaservision.com/,,"{'lat': 33.4948314, 'lng': -86.8064203}"
 "Marc Alan Michelson, MD",Michelson Laser Vision Inc,"1201 11th Ave S #501, Birmingham, AL 35205, USA",(205) 969-8100,http://www.michelsonlaservision.com/,,"{'lat': 33.4948314, 'lng': -86.8064203}"
 "David Felsted, DO",Barnet Dulaney Perkins Eye Center,"350 N Switzer Canyon Dr, Flagstaff, AZ 86001, USA",928-7790,https://www.goodeyes.com/eye-centers/flagstaff/?utm_source=healthgrades&utm_medium=local&utm_campaign=clinic-flagstaff&utm_content=website,,"{'lat': 35.1963197, 'lng': -111.6343056}"
