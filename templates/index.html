@@ -105,16 +105,20 @@
         }
         @media (max-width: 768px) {
             body {
-                padding-bottom: 120px; /* More space for footer on mobile */
+                padding-bottom: 0; /* Remove fixed padding */
+                min-height: 100vh;
             }
             .container {
                 padding: 1rem;
+                margin-bottom: 2rem; /* Add space before footer */
             }
             .footer {
+                position: relative; /* Change to relative positioning on mobile */
+                margin-top: auto; /* Push to bottom of available space */
                 padding: 0.75rem;
             }
             .search-card {
-                margin-bottom: 0.25rem;
+                margin-bottom: 1rem;
             }
         }
     </style>
