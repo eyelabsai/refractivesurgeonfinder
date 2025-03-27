@@ -83,21 +83,34 @@ class SurgeonFinder:
         search_coords = self.get_coordinates_from_zip(zip_code, country)
         return self.find_nearby_surgeons_by_location(search_coords, radius_miles)
 
-    def find_nearby_surgeons_by_city(self, city, state, radius_miles=50):
+    def find_nearby_surgeons_by_city(self, city, state, radius_miles=50, country=None):
         search_coords = None
         try:
             # If city is provided, search by city and state
             if city:
-                search_coords = self.get_coordinates_from_city(city, state)
+                search_coords = self.get_coordinates_from_city(city, state, country)
             # If only state is provided, use state center
-            else:
-                location = self.geolocator.geocode(f"{state}, USA", exactly_one=True)
+            elif state:
+                # Handle international state searches properly
+                query = state
+                if country:
+                    query = f"{state}, {country}"
+                else:
+                    # Default to USA if no country provided but assume it could be any state globally
+                    # This helps with US state searches like "Louisiana"
+                    query = state
+                
+                print(f"Searching for state location: {query}")
+                location = self.geolocator.geocode(query, exactly_one=True)
                 if location:
+                    print(f"Found coordinates for {query}: {location.latitude}, {location.longitude}")
                     search_coords = (location.latitude, location.longitude)
                     # For state-only searches, increase zoom level
                     radius_miles = max(radius_miles, 200)  # Minimum 200 mile radius for state searches
+                else:
+                    print(f"Could not find coordinates for state: {query}")
         except Exception as e:
-            print(f"Error finding coordinates: {str(e)}")
+            print(f"Error finding coordinates for state search: {str(e)}")
         return self.find_nearby_surgeons_by_location(search_coords, radius_miles)
 
     def create_search_map(self, zip_code, results, radius_miles):
@@ -173,24 +186,61 @@ class SurgeonFinder:
 
     def find_surgeons_by_name(self, name_query):
         """Search surgeons by name keyword"""
-        name_query = name_query.lower()
+        name_query = name_query.lower().strip()
         matching_surgeons = []
+        print(f"Searching for name: '{name_query}'")
         
-        for _, surgeon in self.df.iterrows():
+        # Count total surgeons for debugging
+        total_surgeons = len(self.df)
+        print(f"Total surgeons in database: {total_surgeons}")
+        
+        for index, surgeon in self.df.iterrows():
             try:
-                if name_query in surgeon['name'].lower():
-                    coords = json.loads(surgeon['coordinates'].replace("'", '"'))
+                # Debug the raw name data
+                raw_name = surgeon.get('name', '')
+                print(f"Raw name data for index {index}: '{raw_name}'")
+                
+                # Handle NaN or None values
+                if pd.isna(raw_name) or raw_name is None:
+                    continue
+                    
+                surgeon_name = str(raw_name).lower().strip()
+                
+                # Also search in practice name for better matching
+                practice_name = str(surgeon.get('practice_name', '')).lower().strip()
+                
+                # Try different search approaches
+                if (name_query in surgeon_name or 
+                    surgeon_name.startswith(name_query) or 
+                    name_query in practice_name):
+                    
+                    print(f"MATCH FOUND: {raw_name} | Practice: {surgeon.get('practice_name', '')}")
+                    
+                    # Get coordinates carefully
+                    coords_str = surgeon.get('coordinates', '')
+                    if pd.isna(coords_str) or not coords_str:
+                        print(f"Warning: No coordinates for surgeon {raw_name}")
+                        coords = {"lat": 0, "lng": 0}
+                    else:
+                        try:
+                            coords = json.loads(str(coords_str).replace("'", '"'))
+                        except:
+                            print(f"Error parsing coordinates: {coords_str}")
+                            coords = {"lat": 0, "lng": 0}
+                    
                     matching_surgeons.append({
-                        'name': surgeon['name'],
-                        'practice': surgeon['practice_name'],
-                        'address': surgeon['address'],
-                        'phone': surgeon['phone'],
-                        'website': surgeon['website'],
+                        'name': raw_name,
+                        'practice': surgeon.get('practice_name', ''),
+                        'address': surgeon.get('address', ''),
+                        'phone': surgeon.get('phone', ''),
+                        'website': surgeon.get('website', ''),
                         'coordinates': (coords['lat'], coords['lng'])
                     })
-            except:
+            except Exception as e:
+                print(f"Error processing surgeon at index {index}: {str(e)}")
                 continue
                 
+        print(f"Total matches found: {len(matching_surgeons)}")
         return matching_surgeons
 
     def create_name_search_map(self, results):
@@ -289,64 +339,78 @@ def search():
             location_text = f"ZIP: {zip_code}" + (f", {country}" if country else "")
         else:
             city = request.form.get('city', '').strip()
-            state = request.form.get('state', '')
+            state = request.form.get('state', '').strip()
             
             # Find coordinates based on what's provided
-            search_coords = None
-            if city:
-                search_coords = surgeon_finder.get_coordinates_from_city(city, state if state else None, country if country else None)
-            elif state:
-                location = surgeon_finder.geolocator.geocode(f"{state}" + (f", {country}" if country else ""), exactly_one=True)
-                if location:
-                    search_coords = (location.latitude, location.longitude)
+            if city or state:
+                if state and not city:
+                    # State-only search
+                    results = surgeon_finder.find_nearby_surgeons_by_city('', state, radius, country)
+                    search_coords = None  # To avoid double search
+                else:
+                    # City + optional state search
+                    search_coords = surgeon_finder.get_coordinates_from_city(city, state, country)
+                    results = surgeon_finder.find_nearby_surgeons_by_location(search_coords, radius)
+            else:
+                search_coords = None
+                results = []
             
-            results = surgeon_finder.find_nearby_surgeons_by_location(search_coords, radius)
-            
+            # Create the map
             map_html = None
-            if search_coords:
-                m = folium.Map(location=search_coords, zoom_start=6 if not city else 10)
+            if search_coords or (state and not city and results):
+                # If we only searched by state, we need to get coordinates for the map center
+                if state and not city and not search_coords and results:
+                    query = state
+                    if country:
+                        query = f"{state}, {country}"
+                    location = surgeon_finder.geolocator.geocode(query, exactly_one=True)
+                    if location:
+                        search_coords = (location.latitude, location.longitude)
                 
-                location_display = []
-                if city:
-                    location_display.append(city)
-                if state:
-                    location_display.append(state)
-                if country:
-                    location_display.append(country)
-                
-                location_str = ", ".join(location_display)
-                
-                folium.Marker(
-                    search_coords,
-                    popup=f"Search Center: {location_str}",
-                    icon=folium.Icon(color='red', icon='info-sign')
-                ).add_to(m)
-                
-                for surgeon in results:
-                    popup_html = f"""
-                        <b>{surgeon['name']}</b><br>
-                        Practice: {surgeon['practice']}<br>
-                        Address: {surgeon['address']}<br>
-                        Phone: {surgeon['phone']}<br>
-                        Website: <a href="{surgeon['website']}" target="_blank">{surgeon['website']}</a><br>
-                        Distance: {surgeon['distance']} miles
-                    """
+                if search_coords:
+                    m = folium.Map(location=search_coords, zoom_start=6 if not city else 10)
+                    
+                    location_display = []
+                    if city:
+                        location_display.append(city)
+                    if state:
+                        location_display.append(state)
+                    if country:
+                        location_display.append(country)
+                    
+                    location_str = ", ".join(location_display)
                     
                     folium.Marker(
-                        surgeon['coordinates'],
-                        popup=folium.Popup(popup_html, max_width=300),
-                        icon=folium.Icon(color='blue', icon='plus')
+                        search_coords,
+                        popup=f"Search Center: {location_str}",
+                        icon=folium.Icon(color='red', icon='info-sign')
                     ).add_to(m)
                     
-                folium.Circle(
-                    search_coords,
-                    radius=radius * 1609.34,
-                    color='red',
-                    fill=True,
-                    opacity=0.2
-                ).add_to(m)
-                
-                map_html = m._repr_html_()
+                    for surgeon in results:
+                        popup_html = f"""
+                            <b>{surgeon['name']}</b><br>
+                            Practice: {surgeon['practice']}<br>
+                            Address: {surgeon['address']}<br>
+                            Phone: {surgeon['phone']}<br>
+                            Website: <a href="{surgeon['website']}" target="_blank">{surgeon['website']}</a><br>
+                            Distance: {surgeon['distance']} miles
+                        """
+                        
+                        folium.Marker(
+                            surgeon['coordinates'],
+                            popup=folium.Popup(popup_html, max_width=300),
+                            icon=folium.Icon(color='blue', icon='plus')
+                        ).add_to(m)
+                        
+                    folium.Circle(
+                        search_coords,
+                        radius=radius * 1609.34,
+                        color='red',
+                        fill=True,
+                        opacity=0.2
+                    ).add_to(m)
+                    
+                    map_html = m._repr_html_()
                 
             location_parts = []
             if city:
